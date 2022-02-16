@@ -1,12 +1,13 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Awesome-Books:
+# To Do List:
 
 ## Live Demo
 
 [Link to Live demo](https://ridwanediallo.github.io/Awesome-books/)
 
 Additional description about the project and its features.
+
 - Can add book and author
 - Can remove particular book and author
 
@@ -36,10 +37,6 @@ Browser. Any modern browser should do the job.
 Just download or clone the repo and run the index.html file.
 
 ## Author
-
-👤 **Muneeb Ul Rehman**
-
-- GitHub: [@githubhandle](https://github.com/muneebulrehman)
 
 👤 **Ridwan**
 
