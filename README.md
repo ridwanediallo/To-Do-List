@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-[Link to Live demo](https://ridwanediallo.github.io/To-Do-List/)
+[Link to Live demo](https://ridwanediallo.github.io/To-Do-List/dist/)
 
 Additional description about the project and its features.
 
