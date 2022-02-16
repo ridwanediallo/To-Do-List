@@ -1,21 +1,21 @@
-import "./style.css";
+import './style.css';
 
-const list = document.querySelector(".list");
+const list = document.querySelector('.list');
 
-let todoList = [
+const todoList = [
   {
     id: 0,
-    do: "wash the dishes",
+    do: 'wash the dishes',
     boolean: false,
   },
   {
     id: 1,
-    do: "complete to do list project",
+    do: 'complete to do list project',
     boolean: false,
   },
   {
     id: 2,
-    do: "fix care",
+    do: 'fix care',
     boolean: false,
   },
 ];
