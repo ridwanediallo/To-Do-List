@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-[Link to Live demo](https://ridwanediallo.github.io/Awesome-books/)
+[Link to Live demo](https://ridwanediallo.github.io/To-Do-List/)
 
 Additional description about the project and its features.
 
@@ -15,8 +15,8 @@ Additional description about the project and its features.
 
 To get a local copy up and running follow these simple steps.
 
-- You can clone this repo by typing on your terminal.<pre><code>git clone https://github.com/ridwanediallo/Awesome-books.git</code></pre>
-- Type <pre><code>cd Awesome-books</code></pre> to access the project on the terminal
+- You can clone this repo by typing on your terminal.<pre><code>git clone https://github.com/ridwanediallo/To-Do-List</code></pre>
+- Type <pre><code>cd To-Do-List</code></pre> to access the project on the terminal
 
 ## Built With
 
@@ -52,4 +52,4 @@ Give a ⭐️ if you like this project!
 
 ## Report an issue
 
--Go here 👉 [@Link](https://github.com/ridwanediallo/Awesome-books/issues)
+-Go here 👉 [@Link](https://github.com/ridwanediallo/To-Do-List/issues)
