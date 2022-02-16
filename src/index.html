@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="title-holder">
+          <h3 class="todo-title">Today's To Do</h3>
+          <i class="fa-solid fa-rotate refresh"></i>
+        </div>
+        <hr />
+        <form class="form-input-todo">
+          <div class="input-todo">
+            <input
+              class="add-todo"
+              type="text"
+              placeholder="Add to your list..."
+            />
+            <img
+              src="../src/asset/return-down-back-outline.svg"
+              class="return-icon"
+              alt="return"
+            />
+          </div>
+        </form>
+        <hr />
+        <ul class="list"></ul>
+
+        <button class="clear" type="button">Clear To Do list completed</button>
+      </div>
+    </div>
+  </body>
+</html>
