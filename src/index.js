@@ -10,10 +10,11 @@ const addTodoBtn = document.querySelector('.submit');
 
 
 
+
 class TodoTask {
-  constructor(desp, index, done) {
+  constructor(desp, arr, done = false) {
     this.desp = desp;
-    this.index = index;
+    this.index = arr.length + 1;
     this.done = done;
   }
 }
@@ -21,12 +22,7 @@ class TodoTask {
 
 class TaskLisk {
   constructor(){
-    this.tasks = [
-      {desp: 'go out'},
-      {desp: 'go out'},
-      {desp: 'go out'},
-      {desp: 'go out'},     
-    ];
+    this.tasks = [];
   }
 
   saveTolocal(){
@@ -34,11 +30,14 @@ class TaskLisk {
 }
 
 getFromLocal = () => {
-  localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
+  this.tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 }
 
 
+
 renderTodo = (list) => {
+
+  list.innerHTML = '';
   this.tasks.forEach((el, i) => {
 
    const item = document.createElement('li'); 
@@ -63,7 +62,6 @@ renderTodo = (list) => {
 
    list.appendChild(item);
 
-
     // list.innerHTML = ` ${list.innerHTML}
     //   <li class="item">
     //   <div class="left-itmes">
@@ -77,13 +75,26 @@ renderTodo = (list) => {
   })
 }
 
+ addTodo(desp, tasks) {
+   const todoItems = new TodoTask(desp, tasks);
+   tasks.push(todoItems);
+ }
 }
 
 const myTasks = new TaskLisk();
 
-myTasks.renderTodo(list);
 
+document.addEventListener('DOMContentLoaded', () => {
+    myTasks.getFromLocal(myTasks.tasks);
+    myTasks.renderTodo(list);
+})
 
+addTodoBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  myTasks.addTodo(inputTodo.value, myTasks.tasks);
+  myTasks.renderTodo(list);
+  myTasks.saveTolocal();
+})
 
 
 
