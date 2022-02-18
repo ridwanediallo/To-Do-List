@@ -37,14 +37,13 @@ renderTodo = (list) => {
     item.innerHTML = `
           <div class="left-itmes">
           <input type="checkbox" class="checkbox">
-            <p class="text">${el.desp}</p>
+            <p class="description">${el.desp}</p>
           </div>
           <div>
           <i class="fa-solid fa-ellipsis-vertical icon-dots"></i>
           <i class="fa-solid fa-trash-can  icon-remove  hidden"></i>
           </div>
     `;
-
 
     item.addEventListener('click', () => {
       const iconRemove = item.querySelector('.icon-remove');
@@ -55,6 +54,14 @@ renderTodo = (list) => {
       const taskItem = event.target.parentNode.parentNode;
         this.removeItem(taskItem);
       })
+    })
+
+    const checkBox = item.querySelector('.checkbox');
+    const description = item.querySelector('.description');
+
+
+    checkBox.addEventListener('click', () => {
+      description.classList.toggle('line-through')
     })
 
   list.append(item);
@@ -76,8 +83,6 @@ renderTodo = (list) => {
      el.index = i;
     })
     this.saveTolocal();
-    console.log(this.tasks)
-
    this.renderTodo(list);
  }
 
