@@ -89,3 +89,11 @@ button {
   background-color: transparent;
   border: none;
 }
+
+.hidden {
+  display: none;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
