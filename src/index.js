@@ -1,8 +1,8 @@
-import './style.css';
+import "./style.css";
 
-const list = document.querySelector('.list');
-const inputTodo = document.querySelector('.add-todo');
-const addTodoBtn = document.querySelector('.submit');
+const list = document.querySelector(".list");
+const inputTodo = document.querySelector(".add-todo");
+const addTodoBtn = document.querySelector(".submit");
 
 class TodoTask {
   constructor(desp, arr, done = false) {
@@ -12,26 +12,28 @@ class TodoTask {
   }
 }
 
+getFromLocal = () => {
+  if (localStorage.getItem("tasks")) {
+    this.tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+};
+
 class TaskLisk {
   constructor() {
     this.tasks = [];
   }
 
   saveTolocal() {
-	  localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
   }
 
-getFromLocal = () => {
-  this.tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-}
-
-renderTodo = (list) => {
-  list.innerHTML = '';
-  this.tasks.forEach((el, i) => {
-    const item = document.createElement('li');
-    item.classList.add('item');
-    item.id = i;
-    item.innerHTML = `
+  renderTodo = (list) => {
+    list.innerHTML = "";
+    this.tasks.forEach((el, i) => {
+      const item = document.createElement("li");
+      item.classList.add("item");
+      item.id = i;
+      item.innerHTML = `
           <div class="left-itmes">
           <input type="checkbox" class="checkbox">
           <input type='text' class='todo' value='${el.desp}'>
@@ -42,62 +44,78 @@ renderTodo = (list) => {
           </div>
     `;
 
-    item.addEventListener('click', () => {
-      const iconRemove = item.querySelector('.icon-remove');
-      const iconDots = item.querySelector('.icon-dots');
-      iconRemove.classList.toggle('hidden');
-      iconDots.classList.toggle('hidden');
-      iconRemove.addEventListener('click', (event) => {
-        const taskItem = event.target.parentNode.parentNode;
-        this.removeItem(taskItem);
+      item.addEventListener("click", () => {
+        const iconRemove = item.querySelector(".icon-remove");
+        const iconDots = item.querySelector(".icon-dots");
+        iconRemove.classList.toggle("hidden");
+        iconDots.classList.toggle("hidden");
+        iconRemove.addEventListener("click", (event) => {
+          const taskItem = event.target.parentNode.parentNode;
+          this.removeItem(taskItem);
+        });
       });
+
+      item.style.borderBottom = "1px solid #aaa";
+
+      const checkBox = item.querySelector(".checkbox");
+      const todo = item.querySelector(".todo");
+      todo.classList.add("todo-style");
+      checkBox.addEventListener("click", () => {
+        todo.classList.toggle("line-through");
+        this.changeStatus(i);
+        this.saveTolocal();
+        console.log(this.getFromLocal());
+      });
+
+      list.append(item);
     });
+  };
 
-    item.style.borderBottom = '1px solid #aaa';
+  addTodo(desp, tasks) {
+    if (desp !== "") {
+      const todoItems = new TodoTask(desp, tasks);
+      this.tasks.push(todoItems);
+    }
 
-    const checkBox = item.querySelector('.checkbox');
-    const todo = item.querySelector('.todo');
-    todo.classList.add('todo-style');
-    checkBox.addEventListener('click', () => {
-      todo.classList.toggle('line-through');
-    });
-
-    list.append(item);
-  });
-}
-
-addTodo(desp, tasks) {
-  if (desp !== '') {
-    const todoItems = new TodoTask(desp, tasks);
-    this.tasks.push(todoItems);
+    inputTodo.value = "";
   }
 
-  inputTodo.value = '';
-}
+  changeStatus(index) {
+    this.tasks.forEach((el) => {
+      if (el.index === index) {
+        if (el.done) {
+          el.done = false;
+        } else {
+          el.done = true;
+        }
+        console.log(this.tasks);
+      }
+    });
+  }
 
-removeFromLocal(index) {
-  this.tasks = this.tasks.filter((task) => +task.index !== +index);
-  this.tasks.forEach((el, i) => {
-    el.index = i;
-  });
-  this.saveTolocal();
-  this.renderTodo(list);
-}
+  removeFromLocal(index) {
+    this.tasks = this.tasks.filter((task) => +task.index !== +index);
+    this.tasks.forEach((el, i) => {
+      el.index = i;
+    });
+    this.saveTolocal();
+    this.renderTodo(list);
+  }
 
-removeItem(item) {
-  const idItem = item.id;
-  this.removeFromLocal(idItem);
-}
+  removeItem(item) {
+    const idItem = item.id;
+    this.removeFromLocal(idItem);
+  }
 }
 
 const myTasks = new TaskLisk();
 
-document.addEventListener('DOMContentLoaded', () => {
-  myTasks.getFromLocal(myTasks.tasks);
+document.addEventListener("DOMContentLoaded", () => {
+  getFromLocal(list);
   myTasks.renderTodo(list);
 });
 
-addTodoBtn.addEventListener('click', (e) => {
+addTodoBtn.addEventListener("click", (e) => {
   e.preventDefault();
   myTasks.addTodo(inputTodo.value, myTasks.tasks);
   myTasks.renderTodo(list);
