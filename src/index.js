@@ -4,7 +4,6 @@ const list = document.querySelector('.list');
 const inputTodo = document.querySelector('.add-todo');
 const addTodoBtn = document.querySelector('.submit');
 
-
 class TodoTask {
   constructor(desp, arr, done = false) {
     this.desp = desp;
@@ -14,24 +13,22 @@ class TodoTask {
 }
 
 class TaskLisk {
-  constructor(){
+  constructor() {
     this.tasks = [];
   }
 
-saveTolocal(){
+  saveTolocal() {
 	  localStorage.setItem('tasks', JSON.stringify(this.tasks));
-}
+  }
 
 getFromLocal = () => {
   this.tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 }
 
-
 renderTodo = (list) => {
   list.innerHTML = '';
   this.tasks.forEach((el, i) => {
-
-    const item = document.createElement('li'); 
+    const item = document.createElement('li');
     item.classList.add('item');
     item.id = i;
     item.innerHTML = `
@@ -47,69 +44,62 @@ renderTodo = (list) => {
 
     item.addEventListener('click', () => {
       const iconRemove = item.querySelector('.icon-remove');
-      const iconDots = item.querySelector('.icon-dots')
+      const iconDots = item.querySelector('.icon-dots');
       iconRemove.classList.toggle('hidden');
       iconDots.classList.toggle('hidden');
       iconRemove.addEventListener('click', (event) => {
-      const taskItem = event.target.parentNode.parentNode;
+        const taskItem = event.target.parentNode.parentNode;
         this.removeItem(taskItem);
-      })
-    })
+      });
+    });
+
+    item.style.borderBottom = '1px solid #aaa';
 
     const checkBox = item.querySelector('.checkbox');
     const todo = item.querySelector('.todo');
     todo.classList.add('todo-style');
-    console.log(todo)
-
     checkBox.addEventListener('click', () => {
-      todo.classList.toggle('line-through')
-    })
+      todo.classList.toggle('line-through');
+    });
 
-  list.append(item);
-  })
+    list.append(item);
+  });
 }
 
- addTodo(desp, tasks) {
-   if(desp !== ''){
+addTodo(desp, tasks) {
+  if (desp !== '') {
     const todoItems = new TodoTask(desp, tasks);
-   tasks.push(todoItems);
-   } 
+    this.tasks.push(todoItems);
+  }
 
-   inputTodo.value = '';
- }
+  inputTodo.value = '';
+}
 
- removeFromLocal(index){
-   this.tasks = this.tasks.filter(task => +task.index !== +index);
-   this.tasks.forEach((el, i )=> {
-     el.index = i;
-    })
-    this.saveTolocal();
-   this.renderTodo(list);
- }
+removeFromLocal(index) {
+  this.tasks = this.tasks.filter((task) => +task.index !== +index);
+  this.tasks.forEach((el, i) => {
+    el.index = i;
+  });
+  this.saveTolocal();
+  this.renderTodo(list);
+}
 
-
- removeItem(item) {
-   const idItem = item.id;
+removeItem(item) {
+  const idItem = item.id;
   this.removeFromLocal(idItem);
- }
-
+}
 }
 
 const myTasks = new TaskLisk();
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    myTasks.getFromLocal(myTasks.tasks);
-    myTasks.renderTodo(list);
-})
+  myTasks.getFromLocal(myTasks.tasks);
+  myTasks.renderTodo(list);
+});
 
 addTodoBtn.addEventListener('click', (e) => {
   e.preventDefault();
   myTasks.addTodo(inputTodo.value, myTasks.tasks);
   myTasks.renderTodo(list);
-  myTasks.saveTolocal();addTodoBtn
-})
-
-
-
- // <p class="description">${el.desp}</p>
+  myTasks.saveTolocal();
+});
