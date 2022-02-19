@@ -94,6 +94,12 @@ button {
   display: none;
 }
 
+.todo-style {
+  border: none;
+  margin: 15px 0;
+  padding: 5px;
+}
+
 .line-through {
   text-decoration: line-through;
 }

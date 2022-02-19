@@ -37,7 +37,7 @@ renderTodo = (list) => {
     item.innerHTML = `
           <div class="left-itmes">
           <input type="checkbox" class="checkbox">
-            <p class="description">${el.desp}</p>
+          <input type='text' class='todo' value='${el.desp}'>
           </div>
           <div>
           <i class="fa-solid fa-ellipsis-vertical icon-dots"></i>
@@ -57,11 +57,12 @@ renderTodo = (list) => {
     })
 
     const checkBox = item.querySelector('.checkbox');
-    const description = item.querySelector('.description');
-
+    const todo = item.querySelector('.todo');
+    todo.classList.add('todo-style');
+    console.log(todo)
 
     checkBox.addEventListener('click', () => {
-      description.classList.toggle('line-through')
+      todo.classList.toggle('line-through')
     })
 
   list.append(item);
@@ -111,3 +112,4 @@ addTodoBtn.addEventListener('click', (e) => {
 
 
 
+ // <p class="description">${el.desp}</p>
