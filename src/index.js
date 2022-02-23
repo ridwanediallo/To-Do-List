@@ -103,13 +103,13 @@ class TaskList {
     this.removeFromLocal(idItem);
   }
 
-  clearAll() {
-    this.tasks = this.tasks.filter((t) => console.log(t));
+  clearCompleted = () => {
+    this.tasks = this.tasks.filter((td) => td.done === false);
 
-    this.saveTolocal();
-    this.getFromLocal();
-    // renderTodo(list);
-  }
+    this.tasks.forEach((el, i) => {
+      el.index = i;
+    });
+  };
 }
 
 const myTasks = new TaskList();
@@ -126,11 +126,8 @@ addTodoBtn.addEventListener("click", (e) => {
   myTasks.saveTolocal();
 });
 
-const deleteCompletedTodo = () => {
-  clearList.addEventListener("click", () => {
-    myTasks.clearAll();
-    renderTodo(list);
-  });
-};
-
-deleteCompletedTodo();
+clearList.addEventListener("click", () => {
+  myTasks.clearCompleted();
+  myTasks.saveTolocal();
+  myTasks.renderTodo(list);
+});
